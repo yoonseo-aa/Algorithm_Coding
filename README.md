@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=yunseo's%20Github)
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=YOONSEO's%20GITHUB)
 
 <div style="text-align: left;"> 
     <h2 style="border-bottom: 1px solid #d8dee4; color: #282d33;"> 😊 Algorithm Study </h2>  

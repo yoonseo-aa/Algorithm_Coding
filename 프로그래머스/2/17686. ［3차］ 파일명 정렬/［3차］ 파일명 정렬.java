@@ -6,7 +6,7 @@ class Solution {
         Arrays.sort(files, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                Pattern pattern = Pattern.compile("([a-zA-Z\\-\\.\\s]+)([0-9]{1,5})");
+                Pattern pattern = Pattern.compile("([a-zA-Z\\s-.]+)([0-9]{1,5})");
 
                 Matcher m1 = pattern.matcher(o1);
                 Matcher m2 = pattern.matcher(o2);

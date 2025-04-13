@@ -1,31 +1,34 @@
 import java.util.*;
-import java.util.regex.*;
 
 class Solution {
     public String[] solution(String[] files) {
         Arrays.sort(files, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                Pattern pattern = Pattern.compile("([a-zA-Z\\s-.]+)([0-9]{1,5})");
+                String head1 = o1.split("[0-9]")[0].toLowerCase();
+                String head2 = o2.split("[0-9]")[0].toLowerCase();
 
-                Matcher m1 = pattern.matcher(o1);
-                Matcher m2 = pattern.matcher(o2);
-
-                if (m1.find() && m2.find()) {
-                    String head1 = m1.group(1).toLowerCase();
-                    String head2 = m2.group(1).toLowerCase();
-
-                    if (!head1.equals(head2)) {
-                        return head1.compareTo(head2);
-                    }
-
-                    int num1 = Integer.parseInt(m1.group(2));
-                    int num2 = Integer.parseInt(m2.group(2));
-
-                    return Integer.compare(num1, num2);
+                if (!head1.equals(head2)) {
+                    return head1.compareTo(head2);
                 }
 
-                return o1.compareTo(o2);
+                int number1 = Integer.parseInt(getNumber(o1, head1.length()));
+                int number2 = Integer.parseInt(getNumber(o2, head2.length()));
+
+                return Integer.compare(number1, number2);
+            }
+
+            private String getNumber(String file, int index) {
+                StringBuilder number = new StringBuilder();
+                for (int i = index; i < file.length(); i++) {
+                    char ch = file.charAt(i);
+                    if (Character.isDigit(ch) && number.length() < 5) {
+                        number.append(ch);
+                    } else {
+                        break;
+                    }
+                }
+                return number.toString();
             }
         });
 

@@ -1,39 +1,31 @@
 import java.util.*;
+import java.util.regex.*;
 
 class Solution {
     public String[] solution(String[] files) {
         Arrays.sort(files, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
-                String head = o1.split("[0-9]")[0].toLowerCase();
-                String number = o2.split("[0-9]")[0].toLowerCase();
+                Pattern pattern = Pattern.compile("([a-zA-Z\\-\\.\\s]+)([0-9]{1,5})");
 
-                if (!head.equals(number)) {
-                    return head.compareTo(number);
-                }
+                Matcher m1 = pattern.matcher(o1);
+                Matcher m2 = pattern.matcher(o2);
 
-                String num1Str = o1.substring(head.length());
-                String num2Str = o2.substring(number.length());
+                if (m1.find() && m2.find()) {
+                    String head1 = m1.group(1).toLowerCase();
+                    String head2 = m2.group(1).toLowerCase();
 
-                num1Str = getLeadingNumber(num1Str);
-                num2Str = getLeadingNumber(num2Str);
-
-                int num1 = Integer.parseInt(num1Str);
-                int num2 = Integer.parseInt(num2Str);
-
-                return Integer.compare(num1, num2);
-            }
-
-            private String getLeadingNumber(String str) {
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < str.length(); i++) {
-                    if (Character.isDigit(str.charAt(i)) && sb.length() < 5) {
-                        sb.append(str.charAt(i));
-                    } else {
-                        break;
+                    if (!head1.equals(head2)) {
+                        return head1.compareTo(head2);
                     }
+
+                    int num1 = Integer.parseInt(m1.group(2));
+                    int num2 = Integer.parseInt(m2.group(2));
+
+                    return Integer.compare(num1, num2);
                 }
-                return sb.toString();
+
+                return o1.compareTo(o2);
             }
         });
 

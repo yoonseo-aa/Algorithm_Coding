@@ -1,20 +1,16 @@
 import java.util.*;
 
 public class Solution {
-    public int[] solution(int[] arr) {
-        Deque<Integer> deque = new ArrayDeque<>();
+    public Stack<Integer> solution(int []arr) {
 
-        for (int num : arr) {
-            if (deque.isEmpty() || deque.peekLast() != num) {
-                deque.addLast(num);
+        Stack<Integer> stack = new Stack<>();
+
+        for(int num : arr){
+            if(stack.size() == 0 || stack.peek() != num){
+                stack.push(num);
             }
         }
-        int[] answer = new int[deque.size()];
-        int i = 0;
-        for (int num : deque) {
-            answer[i++] = num;
-        }
 
-        return answer;
+        return stack;
     }
 }

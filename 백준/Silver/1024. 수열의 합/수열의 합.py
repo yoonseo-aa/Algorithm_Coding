@@ -2,7 +2,6 @@ N, L = map(int, input().split())
 
 result = []
 temp = 0
-
 while(1):
     a = N//L
     b = N%L

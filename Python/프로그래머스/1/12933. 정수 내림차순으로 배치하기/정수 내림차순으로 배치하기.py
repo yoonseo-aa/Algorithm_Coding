@@ -1,7 +1,7 @@
 def solution(n):
-    answer = ''
-    num_list = list(map(int, str(n)))
-    num_list.sort(reverse=True)
-    for i in range(len(num_list)):
-        answer += str(num_list[i])
+    res = list(map(int, str(n)))
+    res.sort(reverse=True)
+    answer = ""
+    for r in res:
+        answer += str(r)
     return int(answer)

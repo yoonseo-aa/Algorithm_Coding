@@ -1,13 +1,9 @@
 def solution(num):
     answer = 0
     
-    while num != 1 and answer < 500:
-        if num % 2 == 0:
-            num //= 2
-        else:
-            num = num * 3 + 1
-        answer += 1
+    for i in range(500):
+        if num == 1: return i
+        num = num // 2 if num % 2 == 0 else num * 3 + 1
         
-    if num != 1 : return -1 
     
-    return answer
+    return 500 if num == 1 else -1 
